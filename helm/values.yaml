@@ -1,0 +1,7 @@
+appName: spring-petclinic
+appTier: be-fe-tier
+namespace: {{ .Values.namespace }}
+
+image:
+  name: registry.salapie.com/admin/spring-petclinic
+  tag: 1.0.0
