@@ -17,12 +17,10 @@ jobs:
         uses: azure/k8s-set-context@v1
         with:
           kubeconfig: ${{secrets.KUBE_CONFIG_DATA}}
-          namespace: dev
 
       - name: Install Helm
-        uses: azure/setup-helm@v1
+        uses: azure/setup-helm@v4.1.0
 
       - name: Deploy to Kubernetes
         run: |
-          helm ls --all-namespaces
-          helm upgrade --install spring-petclinic-release-dev ./helm/ --values ./helm/values.yaml -f ./helm/values-dev.yaml --namespace dev
+          helm upgrade --install spring-petclinic-release-dev ./helm/ --values ./helm/values.yaml -f ./helm/values-dev.yaml -n dev

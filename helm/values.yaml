@@ -1,6 +1,6 @@
 appName: spring-petclinic
 appTier: be-fe-tier
-namespace: dev
+namespace: default
 
 image:
   name: registry.salapie.com/admin/spring-petclinic
