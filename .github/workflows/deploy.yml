@@ -24,4 +24,5 @@ jobs:
 
       - name: Deploy to Kubernetes
         run: |
+          helm ls --all-namespaces
           helm upgrade --install spring-petclinic-release-dev ./helm/ --values ./helm/values.yaml -f ./helm/values-dev.yaml --namespace dev
