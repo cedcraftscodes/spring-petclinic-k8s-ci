@@ -1,0 +1,26 @@
+name: Deploy to Kubernetes
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up kubectl
+        uses: azure/k8s-set-context@v1
+        with:
+          kubeconfig: ${{secrets.KUBE_CONFIG_DATA}}
+
+      - name: Install Helm
+        uses: azure/setup-helm@v1
+
+      - name: Deploy to Kubernetes
+        run: |
+          helm upgrade --install spring-petclinic-release-dev ./helm/ --values ./helm/values.yaml -f ./helm/values-dev.yaml -n dev
